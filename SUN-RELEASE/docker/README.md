@@ -1,0 +1,1 @@
+Container artifacts reference root `Dockerfile` and `docker-compose.yml`.

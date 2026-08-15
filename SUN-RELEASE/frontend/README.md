@@ -1,0 +1,1 @@
+Frontend artifacts reference `src/app`, `src/components`, `src/features`, `src/themes`, `src/design-system`.

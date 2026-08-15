@@ -1,0 +1,1 @@
+Database artifacts reference `src/db/schema.ts`, `drizzle/0000_initial.sql`, `drizzle/0001_ai_phase4.sql`, `drizzle/0001_seed.sql`.

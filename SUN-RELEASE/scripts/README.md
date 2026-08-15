@@ -1,0 +1,1 @@
+Operational scripts reference `/scripts/backup_full.sh`, `/scripts/restore_full.sh`, `/scripts/db_integrity_check.sh`, `/scripts/load_test.js`.

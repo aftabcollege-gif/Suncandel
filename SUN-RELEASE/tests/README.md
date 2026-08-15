@@ -1,0 +1,1 @@
+Test artifacts reference `src/Tests/*.ts` and command: `node --import tsx --test src/Tests/*.ts`.

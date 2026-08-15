@@ -1,0 +1,1 @@
+AI artifacts reference `src/Application/aiCommerceService.ts`, `src/Domain/ai/nlp.ts`, and `/api/v1/ai/*` endpoints.

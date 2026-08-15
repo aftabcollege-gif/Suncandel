@@ -1,0 +1,1 @@
+Infrastructure artifacts reference `Dockerfile`, `docker-compose.yml`, `.github/workflows/ci.yml`.

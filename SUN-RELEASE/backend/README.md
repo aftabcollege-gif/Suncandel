@@ -1,0 +1,1 @@
+Backend artifacts reference `src/Application`, `src/Infrastructure`, `src/app/api`, `src/Shared`.
