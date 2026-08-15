@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: app_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - sun_pg_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/app_db
+      JWT_ACCESS_SECRET: change_me_access_secret_please
+      JWT_REFRESH_SECRET: change_me_refresh_secret_please
+      PAYMENT_CALLBACK_SECRET: change_me_payment_secret_please
+      ACCESS_TOKEN_TTL_MINUTES: "15"
+      REFRESH_TOKEN_TTL_DAYS: "30"
+      CORS_ALLOWED_ORIGIN: http://localhost:3000
+    ports:
+      - "3000:3000"
+
+volumes:
+  sun_pg_data:
