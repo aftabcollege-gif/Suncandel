@@ -1,17 +1,13 @@
 import Link from "next/link";
 import { ProductCard } from "@/components/commerce/ProductCard";
-import { MegaMenu } from "@/components/navigation/MegaMenu";
-import { ThemeShowcase } from "@/features/home/ThemeShowcase";
-import { PremiumHeroExperience } from "@/components/experience/PremiumHeroExperience";
-import { StorefrontBanner } from "@/features/home/StorefrontBanner";
-import { BrandStorySection } from "@/features/home/BrandStorySection";
-import { ConversionJourneySection } from "@/features/home/ConversionJourneySection";
+import { IwanHero } from "@/components/experience/IwanHero";
+import { ChronicleScroll } from "@/components/experience/ChronicleScroll";
 
 const products = [
   {
     id: "p1",
-    title: "شمع دست‌ساز عطری اسطوخودوس",
-    description: "ساخته‌شده با موم طبیعی و رایحه آرامش‌بخش برای دکور و هدیه",
+    title: "شمع عطری اسطوخودوس",
+    description: "موم طبیعی، شعله آرام، مناسب شب و هدیه",
     price: 329000,
     discountPercent: 12,
     stock: 18,
@@ -19,8 +15,8 @@ const products = [
   },
   {
     id: "p2",
-    title: "پکیج تولد مینیمال طلایی",
-    description: "ست کامل تزئین جشن با طراحی مدرن و بسته‌بندی کادویی",
+    title: "ست جشن طلایی SUN",
+    description: "شمع ستونی، روبان و بسته‌بندی کادویی برای تولد",
     price: 599000,
     discountPercent: 0,
     stock: 4,
@@ -28,8 +24,8 @@ const products = [
   },
   {
     id: "p3",
-    title: "ابزار دکور کیک حرفه‌ای",
-    description: "مناسب قنادان خانگی و حرفه‌ای با کیفیت صنعتی",
+    title: "شمعدان کارگاه",
+    description: "پایه برنزی برای شعله بلند سفره عقد و یلدا",
     price: 749000,
     discountPercent: 8,
     stock: 0,
@@ -39,38 +35,40 @@ const products = [
 
 export function HomeLanding() {
   return (
-    <div className="space-y-6">
-      <section className="hero rounded-3xl p-8 md:p-10">
-        <p className="inline-flex rounded-xl bg-[var(--color-primary)]/10 px-3 py-1 text-xs">
-          Social Commerce • Multi Vendor • Multi Store • AI Commerce
-        </p>
-        <h2 className="mt-4 text-3xl font-bold md:text-4xl">تجربه خرید لوکس و تعاملی نسل جدید برای بازار ایران</h2>
-        <p className="mt-3 max-w-2xl text-sm text-muted">
-          SUN اکنون با موتور تجربه سه‌بعدی، داستان‌پردازی اسکرولی، پیشنهاد هوشمند و پنل‌های Enterprise
-          برای فروشنده و ادمین، یک تجربه Premium در سطح برندهای جهانی ارائه می‌دهد.
-        </p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <Link href="/products" className="btn-primary">Explore Collection</Link>
-          <Link href="/vendor/dashboard" className="btn-secondary">ورود به پنل فروشنده</Link>
-        </div>
-      </section>
+    <div>
+      <IwanHero />
+      <ChronicleScroll />
 
-      <StorefrontBanner />
-      <PremiumHeroExperience />
-      <BrandStorySection />
-      <ConversionJourneySection />
-      <ThemeShowcase />
-      <MegaMenu />
-
-      <section>
-        <div className="mb-3 flex items-center justify-between">
-          <h2 className="text-xl font-bold">پیشنهادهای ویژه امروز</h2>
-          <Link href="/products" className="text-sm text-muted underline">مشاهده همه</Link>
+      <section className="container-main pb-20">
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="kicker">کالکشن</p>
+            <h2 className="display mt-3 text-4xl">شمع‌هایی که باید روشن شوند</h2>
+          </div>
+          <Link href="/products" className="btn-secondary">
+            همه محصولات
+          </Link>
         </div>
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
+        </div>
+      </section>
+
+      <section className="container-main mb-20 overflow-hidden border border-[var(--color-border)]">
+        <div className="grid md:grid-cols-2">
+          <div className="min-h-72 bg-cover bg-center" style={{ backgroundImage: "url('/heritage/atelier-candle.jpg')" }} />
+          <div className="flex flex-col justify-center p-8 md:p-12">
+            <p className="kicker">فروشنده شو</p>
+            <h2 className="display mt-3 text-3xl">اگر شمع می‌سازی، اینجا ویترین توست</h2>
+            <p className="mt-3 text-sm text-muted">
+              SUN بازار چندفروشندگی شمع و جشن است. کارگاه خودت را با همان زبان نور معرفی کن.
+            </p>
+            <Link href="/vendor/dashboard" className="btn-primary mt-6 w-fit">
+              ورود فروشنده
+            </Link>
+          </div>
         </div>
       </section>
     </div>
