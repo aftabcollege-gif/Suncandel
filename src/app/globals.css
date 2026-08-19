@@ -4,11 +4,11 @@
   --color-primary: #d4af37;
   --color-secondary: #163326;
   --color-accent: #e6c56a;
-  --color-background: #050705;
+  --color-background: #0a100d;
   --color-surface: #0d1611;
   --color-border: rgba(212, 175, 55, 0.22);
-  --color-text: #f3f0e6;
-  --color-muted-text: #8fa396;
+  --color-text: #f5f2e8;
+  --color-muted-text: #d7e0d6;
   --color-success: #3f8f63;
   --color-warning: #d4af37;
   --color-error: #c45b4a;
@@ -121,8 +121,12 @@ input:focus-visible {
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 32px rgba(212, 175, 55, 0.35);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(212, 175, 55, 0.28);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
 }
 
 .btn-secondary {
