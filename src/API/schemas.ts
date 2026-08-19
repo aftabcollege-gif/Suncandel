@@ -9,7 +9,7 @@ export const registerSchema = z.object({
 });
 
 export const loginSchema = z.object({
-  phone: z.string().min(10).max(20),
+  phone: z.string().min(4).max(32),
   password: z.string().min(8),
 });
 
