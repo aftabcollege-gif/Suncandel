@@ -1,3 +1,9 @@
+import { config } from "dotenv";
+
+config({ path: ".env.prod" });
+config({ path: ".env.local" });
+config({ path: ".env" });
+
 import { runSeed } from "@/Infrastructure/seed/seed";
 
 runSeed()

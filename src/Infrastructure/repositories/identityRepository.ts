@@ -1,4 +1,4 @@
-import { and, eq, isNull } from "drizzle-orm";
+import { and, eq, isNull, or } from "drizzle-orm";
 import { db } from "@/db";
 import { roles, securityLogs, sessions, userRoles, users } from "@/db/schema";
 
@@ -29,6 +29,22 @@ export class IdentityRepository {
       .select()
       .from(users)
       .where(and(eq(users.phone, phone), isNull(users.deletedAt)))
+      .limit(1);
+
+    return rows[0] ?? null;
+  }
+
+  async findUserByLogin(login: string) {
+    const value = login.trim();
+    const rows = await db
+      .select()
+      .from(users)
+      .where(
+        and(
+          isNull(users.deletedAt),
+          or(eq(users.phone, value), eq(users.email, value), eq(users.fullName, value))
+        )
+      )
       .limit(1);
 
     return rows[0] ?? null;

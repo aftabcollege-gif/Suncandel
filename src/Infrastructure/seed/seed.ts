@@ -1,6 +1,15 @@
 import { db } from "@/db";
-import { permissions, rolePermissions, roles, systemConfigurations, tenants } from "@/db/schema";
+import {
+  permissions,
+  rolePermissions,
+  roles,
+  systemConfigurations,
+  tenants,
+  userRoles,
+  users,
+} from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { hashPassword } from "@/Shared/security";
 
 const defaultPermissions = [
   "vendor:manage",
@@ -108,5 +117,47 @@ export async function runSeed() {
     })
     .onConflictDoNothing();
 
-  return { tenantId };
+  const adminPhone = "09155088324";
+  const adminPasswordHash = await hashPassword("admin@12345");
+  const existingAdmin = await db.select({ id: users.id }).from(users).where(eq(users.phone, adminPhone)).limit(1);
+
+  let adminId = existingAdmin[0]?.id;
+  if (!adminId) {
+    const created = await db
+      .insert(users)
+      .values({
+        tenantId,
+        fullName: "admin",
+        phone: adminPhone,
+        email: "admin",
+        passwordHash: adminPasswordHash,
+        status: "active",
+      })
+      .returning({ id: users.id });
+    adminId = created[0]?.id;
+  } else {
+    await db
+      .update(users)
+      .set({
+        fullName: "admin",
+        email: "admin",
+        passwordHash: adminPasswordHash,
+        status: "active",
+        updatedAt: new Date(),
+      })
+      .where(eq(users.id, adminId));
+  }
+
+  if (adminId) {
+    const adminRole = await db
+      .select({ id: roles.id })
+      .from(roles)
+      .where(eq(roles.code, "super_admin"))
+      .limit(1);
+    if (adminRole[0]) {
+      await db.insert(userRoles).values({ userId: adminId, roleId: adminRole[0].id }).onConflictDoNothing();
+    }
+  }
+
+  return { tenantId, adminId };
 }

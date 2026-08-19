@@ -51,7 +51,7 @@ export class IdentityService {
   }
 
   async login(input: { phone: string; password: string; ipAddress?: string | null; userAgent?: string | null }) {
-    const user = await identityRepo.findUserByPhone(input.phone);
+    const user = await identityRepo.findUserByLogin(input.phone);
     if (!user || !user.passwordHash) {
       throw new AppError("اطلاعات ورود نادرست است", 401, "INVALID_CREDENTIALS");
     }

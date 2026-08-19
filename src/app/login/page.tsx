@@ -32,7 +32,7 @@ export default function LoginPage() {
       <section className="surface mx-auto w-full max-w-md rounded-3xl p-5">
         <h2 className="text-2xl font-bold">ورود</h2>
         <div className="mt-4 space-y-3">
-          <Input placeholder="شماره موبایل" value={phone} onChange={(e) => setPhone(e.target.value)} />
+          <Input placeholder="موبایل یا نام کاربری" value={phone} onChange={(e) => setPhone(e.target.value)} />
           <Input type="password" placeholder="رمز عبور" value={password} onChange={(e) => setPassword(e.target.value)} />
           <button className="btn-primary w-full" disabled={loading} onClick={submit}>ورود به حساب</button>
           {message ? <p className="text-sm text-muted">{message}</p> : null}
