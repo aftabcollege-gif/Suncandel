@@ -1,29 +1,32 @@
-import Image from "next/image";
 import Link from "next/link";
-import type { Candle } from "@/data/candles";
+import { InventoryStatus } from "@/components/commerce/InventoryStatus";
 import { PriceTag } from "@/components/commerce/PriceTag";
+import { RatingStars } from "@/components/commerce/RatingStars";
 
-export type ProductCardModel = Candle;
+export type ProductCardModel = {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  discountPercent?: number;
+  stock: number;
+  rating: number;
+};
 
-export function ProductCard({ product }: { product: Candle }) {
+export function ProductCard({ product }: { product: ProductCardModel }) {
   return (
-    <article>
-      <Link href={`/products/${product.id}`} className="block">
-        <div className="relative aspect-[4/5] overflow-hidden bg-[#121a16]">
-          <Image src={product.image} alt={product.title} fill sizes="(max-width:768px) 100vw, 33vw" className="object-cover" />
-        </div>
-        <div className="pt-4">
-          <h3 className="display text-2xl text-[#f4f1ea]">{product.title}</h3>
-          <p className="mt-1 text-sm text-[#dce4dc]">{product.scent}</p>
-          <p className="mt-1 text-sm text-[#dce4dc]">
-            {product.burnHours} ساعت سوخت · {product.weight}
-          </p>
-          <div className="mt-3 flex items-center justify-between gap-3">
-            <PriceTag price={product.price} discount={product.discountPercent} />
-            <span className="btn-primary text-xs">خرید</span>
-          </div>
-        </div>
-      </Link>
+    <article className="surface card-hover rounded-3xl p-4">
+      <div className="mb-3 aspect-[4/3] rounded-2xl bg-gradient-to-tr from-[var(--color-secondary)]/25 to-[var(--color-accent)]/25" />
+      <h3 className="text-base font-bold">{product.title}</h3>
+      <p className="mt-1 line-clamp-2 text-sm text-muted">{product.description}</p>
+      <div className="mt-3 flex items-center justify-between">
+        <RatingStars value={product.rating} />
+        <InventoryStatus stock={product.stock} />
+      </div>
+      <div className="mt-3 flex items-center justify-between">
+        <PriceTag price={product.price} discount={product.discountPercent} />
+        <Link href={`/products/${product.id}`} className="btn-primary text-sm">مشاهده</Link>
+      </div>
     </article>
   );
 }

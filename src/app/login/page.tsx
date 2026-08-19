@@ -29,16 +29,12 @@ export default function LoginPage() {
 
   return (
     <AppShell>
-      <section className="mx-auto w-full max-w-md border border-[var(--color-border)] bg-[#0b1410] p-8">
-        <p className="kicker">account</p>
-        <h1 className="display mt-3 text-4xl">ورود</h1>
-        <div className="gold-rule my-6" />
-        <div className="space-y-3">
+      <section className="surface mx-auto w-full max-w-md rounded-3xl p-5">
+        <h2 className="text-2xl font-bold">ورود</h2>
+        <div className="mt-4 space-y-3">
           <Input placeholder="شماره موبایل" value={phone} onChange={(e) => setPhone(e.target.value)} />
           <Input type="password" placeholder="رمز عبور" value={password} onChange={(e) => setPassword(e.target.value)} />
-          <button className="btn-primary w-full" disabled={loading} onClick={submit}>
-            ورود
-          </button>
+          <button className="btn-primary w-full" disabled={loading} onClick={submit}>ورود به حساب</button>
           {message ? <p className="text-sm text-muted">{message}</p> : null}
         </div>
       </section>

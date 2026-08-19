@@ -1,42 +1,37 @@
-import Image from "next/image";
 import { AppShell } from "@/layouts/AppShell";
-import { PriceTag } from "@/components/commerce/PriceTag";
 import { InventoryStatus } from "@/components/commerce/InventoryStatus";
+import { PriceTag } from "@/components/commerce/PriceTag";
+import { RatingStars } from "@/components/commerce/RatingStars";
 import { Product3DViewerLazy } from "@/components/experience/Product3DViewerLazy";
-import { getCandle } from "@/data/candles";
+import { PurchaseDecisionSupport } from "@/features/product/PurchaseDecisionSupport";
 
 type Params = { params: Promise<{ id: string }> };
 
 export default async function ProductDetailPage({ params }: Params) {
   const { id } = await params;
-  const candle = getCandle(id);
-
   return (
     <AppShell>
-      <section className="grid gap-10 lg:grid-cols-2">
-        <div className="relative aspect-[4/5] bg-[#121a16]">
-          <Image src={candle.image} alt={candle.title} fill sizes="50vw" className="object-cover" />
-        </div>
+      <section className="surface grid gap-6 rounded-3xl p-6 lg:grid-cols-2">
+        <div className="aspect-square rounded-3xl bg-gradient-to-tr from-[var(--color-secondary)]/25 to-[var(--color-accent)]/30" />
         <div>
-          <h1 className="display text-4xl text-[#f4f1ea] md:text-5xl">{candle.title}</h1>
-          <p className="mt-4 max-w-[40ch] text-[1.05rem] leading-8 text-[#dce4dc]">{candle.description}</p>
-          <dl className="mt-8 space-y-2 text-[#dce4dc]">
-            <div>رایحه: {candle.scent}</div>
-            <div>نت‌ها: {candle.notes}</div>
-            <div>زمان سوخت: {candle.burnHours} ساعت</div>
-            <div>وزن: {candle.weight}</div>
-          </dl>
-          <div className="mt-6 flex items-center gap-4">
-            <PriceTag price={candle.price} discount={candle.discountPercent} />
-            <InventoryStatus stock={candle.stock} />
+          <p className="text-xs text-muted">شناسه محصول: {id}</p>
+          <h2 className="mt-2 text-2xl font-bold">شمع دست‌ساز پریمیوم مدل SUN-{id}</h2>
+          <p className="mt-3 text-sm text-muted">
+            طراحی شده برای دکور لاکچری و مناسب هدیه با بسته‌بندی اختصاصی فروشنده.
+          </p>
+          <div className="mt-4 flex items-center gap-3">
+            <RatingStars value={5} />
+            <InventoryStatus stock={9} />
           </div>
-          <button className="btn-primary mt-8">افزودن به سبد</button>
+          <div className="mt-4">
+            <PriceTag price={560000} discount={14} />
+          </div>
+          <button className="btn-primary mt-6">افزودن به سبد</button>
         </div>
       </section>
-      <div className="mt-16">
-        <h2 className="display mb-4 text-3xl">نمای سه‌بعدی</h2>
-        <Product3DViewerLazy />
-      </div>
+
+      <Product3DViewerLazy />
+      <PurchaseDecisionSupport />
     </AppShell>
   );
 }
