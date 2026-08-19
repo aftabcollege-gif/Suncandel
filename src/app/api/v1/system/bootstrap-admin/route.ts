@@ -18,7 +18,15 @@ export async function POST() {
     const result = await runSeed();
     return NextResponse.json({ ok: true, created: true, adminId: result.adminId });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "seed failed";
-    return NextResponse.json({ ok: false, error: message }, { status: 500 });
+    const err = error as Error & { cause?: { message?: string; code?: string } };
+    return NextResponse.json(
+      {
+        ok: false,
+        error: err.message,
+        cause: err.cause?.message ?? String(err.cause ?? ""),
+        code: err.cause?.code ?? "",
+      },
+      { status: 500 }
+    );
   }
 }
