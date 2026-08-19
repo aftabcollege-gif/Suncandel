@@ -9,6 +9,7 @@ import { PageMotion } from "@/components/interaction/PageMotion";
 export function AppShell({ children }: { children: React.ReactNode }) {
   const path = usePathname();
   const isPortal = path.startsWith("/admin") || path.startsWith("/vendor");
+  const isHome = path === "/";
 
   return (
     <div className="site-root">
@@ -21,7 +22,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </PageMotion>
         </main>
       ) : (
-        <main className="store-main">
+        <main className={isHome ? "store-main" : "store-page"}>
           <PageMotion>{children}</PageMotion>
         </main>
       )}
