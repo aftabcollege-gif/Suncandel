@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, OrbitControls, RoundedBox } from "@react-three/drei";
+import { OrbitControls, RoundedBox } from "@react-three/drei";
 import type { Mesh } from "three";
 import { useRef } from "react";
 

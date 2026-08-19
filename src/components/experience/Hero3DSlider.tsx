@@ -170,7 +170,6 @@ export function Hero3DSlider() {
                 <circleGeometry args={[3.6, 64]} />
                 <meshStandardMaterial color="#fff5e6" roughness={0.8} metalness={0.02} />
               </mesh>
-              <Environment preset="city" />
               <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.35} />
             </Canvas>
           )}
