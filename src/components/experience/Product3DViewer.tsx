@@ -62,7 +62,6 @@ export function Product3DViewer() {
           <directionalLight position={[2, 4, 3]} intensity={1.2} />
           <spotLight position={[-3, 4, 4]} intensity={0.8} />
           <CandleModel color={color} size={size} />
-          <Environment preset="warehouse" />
           <OrbitControls enablePan={false} minDistance={3} maxDistance={8} />
         </Canvas>
       </div>

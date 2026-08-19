@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, Float, OrbitControls } from "@react-three/drei";
+import { Float, OrbitControls } from "@react-three/drei";
 import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import type { Group } from "three";
@@ -79,14 +79,23 @@ function CandleCluster({ slideIndex }: { slideIndex: number }) {
 
 export function Hero3DSlider() {
   const [active, setActive] = useState(0);
-  const [lightMode, setLightMode] = useState(false);
+  const [lightMode, setLightMode] = useState(true);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 900px)");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setLightMode(mq.matches || reduce.matches);
+    const canWebgl = (() => {
+      try {
+        const canvas = document.createElement("canvas");
+        return Boolean(canvas.getContext("webgl") || canvas.getContext("experimental-webgl"));
+      } catch {
+        return false;
+      }
+    })();
+    const useLight = mq.matches || reduce.matches || !canWebgl;
+    setLightMode(useLight);
 
-    const onChange = () => setLightMode(mq.matches || reduce.matches);
+    const onChange = () => setLightMode(mq.matches || reduce.matches || !canWebgl);
     mq.addEventListener("change", onChange);
     reduce.addEventListener("change", onChange);
     return () => {
