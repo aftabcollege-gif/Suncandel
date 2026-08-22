@@ -13,12 +13,12 @@ export type StorefrontConfig = {
 export const storefronts: StorefrontConfig[] = [
   {
     code: "sun-main",
-    hostPatterns: ["sun.ir", "localhost", "127.0.0.1"],
-    nameFa: "SUN Marketplace",
-    taglineFa: "مرجع لوکس شمع و لوازم جشن",
+    hostPatterns: ["sun.ir", "suncandel-beta.vercel.app", "localhost", "127.0.0.1"],
+    nameFa: "سان‌کندل",
+    taglineFa: "شبکه تولید و پخش شمع، لوازم جشن تولد، قنادی، بسته‌بندی و هدیه",
     logoMark: "SUN",
     defaultTheme: "minimalism",
-    accentNote: "Premium Multi Vendor Platform",
+    accentNote: "آتلیه شمع و شعله",
   },
   {
     code: "candle-lab",
