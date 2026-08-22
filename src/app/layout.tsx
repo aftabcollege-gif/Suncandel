@@ -6,8 +6,10 @@ import { Providers } from "@/app/providers";
 import { resolveStorefrontByHost } from "@/utils/storefront";
 
 export const metadata: Metadata = {
-  title: "SUN | Enterprise Social Commerce",
-  description: "پلتفرم Enterprise چندفروشندگی SUN برای بازار ایران",
+  metadataBase: new URL("https://suncandel-beta.vercel.app"),
+  title: "سان کندل | شمع و ملزومات جشن",
+  description:
+    "سان‌کندل شبکه تولید و پخش شمع، لوازم جشن تولد، قنادی، بسته‌بندی و هدیه است؛ روشن از شعله، نه از برچسب و جایگاه.",
 };
 
 export default async function RootLayout({ children }: { children: ReactNode }) {

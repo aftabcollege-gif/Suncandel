@@ -691,7 +691,7 @@ export class AICommerceService {
       priceHint: avgPrice,
     });
 
-    const seoDescription = `خرید ${input.productName} با بهترین قیمت و ارسال سریع از SUN Marketplace`;
+    const seoDescription = `خرید ${input.productName} با بهترین قیمت و ارسال سریع از سان‌کندل`;
 
     await this.logInference({
       tenantId: input.tenantId,

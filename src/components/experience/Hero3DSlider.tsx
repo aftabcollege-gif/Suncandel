@@ -40,7 +40,7 @@ const slides: Slide[] = [
     title: "Explore Collection",
     description: "مجموعه کامل فروشندگان منتخب SUN را کشف کنید.",
     cta: "مشاهده کالکشن",
-    palette: ["#ebf5ff", "#78b0ff", "#2b65bb"],
+    palette: ["#123f2f", "#b78b31", "#d4af37"],
   },
 ];
 
